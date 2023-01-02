@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Staff Dashboard</h1>
+    <h2>Waiting Rooms</h2>
+    <ul>
+        {% for waiting_room in waiting_rooms %}
+            <li><a href="{% url 'view_waiting_room' waiting_room.id %}">{{ waiting_room.name }}</a></li>
+        {% endfor %}
+    </ul>
+    <h2>Counters</h2>
+    <ul>
+        {% for counter in counters %}
+            <li>{{ counter.name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

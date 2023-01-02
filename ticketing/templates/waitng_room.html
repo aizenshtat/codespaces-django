@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Waiting Room</h1>
+    <p>Ticket ID: {{ ticket.unique_id }}</p>
+    <p>Counter: {{ ticket.counter }}</p>
+    <p>Place in queue: {{ ticket.place_in_queue }}</p>
+    {% if ticket.called %}
+        <p>Your ticket has been called. Please proceed to counter {{ ticket.counter }}.</p>
+    {% else %}
+        <p>Your ticket has not been called yet. Please wait for your turn.</p>
+    {% endif %}
+{% endblock %}
