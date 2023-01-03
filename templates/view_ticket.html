@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>Waiting Room</h1>
-    <p>Ticket ID: {{ ticket.unique_id }}</p>
+    <p>Ticket ID: {{ ticket.ticket_id }}</p>
     <p>Counter: {{ ticket.counter }}</p>
     <p>Place in queue: {{ ticket.place_in_queue }}</p>
     {% if ticket.called %}

@@ -1,0 +1,38 @@
+{% load django_browser_reload %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Ticketing System{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Ticketing System</h1>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </header>
+    <nav>
+        <ul>
+            {% if user.is_authenticated %}
+            <ul>
+                {% for waiting_room in waiting_rooms %}
+                  <li><a href="{% url 'waiting_room' waiting_room.id %}">{{ waiting_room.name }}</a></li>
+                {% empty %}
+                  <li>No waiting rooms found</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+        </ul>
+    </nav>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

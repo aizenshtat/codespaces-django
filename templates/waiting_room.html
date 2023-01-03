@@ -1,10 +1,11 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
     <h1>{{ waiting_room.name }}</h1>
     <h2>Tickets</h2>
     <img src="{% static 'waiting_rooms/'|add:waiting_room.id|add:'.png' %}" alt="Waiting room QR code">
-    <a href="{% url 'add_ticket' waiting_room.id %}">Add ticket</a>
+    <a href="{% url 'create_ticket' waiting_room.id %}">Add ticket</a>
     <table>
         <thead>
             <tr>
@@ -17,13 +18,12 @@
         <tbody>
             {% for ticket in tickets %}
                 <tr>
-                    <td>{{ ticket.unique_id }}</td>
+                    <td>{{ ticket.ticket_id }}</td>
                     <td>{{ ticket.counter }}</td>
                     <td>{{ ticket.place_in_queue }}</td>
                     <td>
-                        <a href="{% url 'call_ticket' ticket.id %}">Call</a>
-                        <a href="{% url 'move_back_in_queue' ticket.id %}">Move back</a>
-                        <a href="{% url 'move_forward_in_queue' ticket.id %}">Move forward</a>
+                        <a href="{% url 'move_ticket_back' ticket.id %}">Move back</a>
+                        <a href="{% url 'move_ticket_forward' ticket.id %}">Move forward</a>
                         <a href="{% url 'remove_ticket' ticket.id %}">Remove</a>
                     </td>
                 </tr>
